@@ -66,6 +66,7 @@
     "eslint-plugin-ember": "^12.5.0",
     "eslint-plugin-n": "^17.17.0",
     "eslint-plugin-qunit": "^8.1.2",
+    "firebase-tools": "^14.26.0",
     "globals": "^15.15.0",
     "loader.js": "^4.7.0",
     "prettier": "^3.5.3",
