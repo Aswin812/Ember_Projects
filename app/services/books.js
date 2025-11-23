@@ -6,7 +6,6 @@ import { service } from '@ember/service';
 export default class BooksService extends Service {
     @service currentUser;
     books = new TrackedArray([
-      [
   {
     "id": 1,
     "title": "Atomic Habits",
@@ -157,9 +156,7 @@ export default class BooksService extends Service {
     "description": "The Alchemist tells the story of Santiago, a shepherd boy who dreams of finding a worldly treasure and discovers that true fulfillment lies in following one’s personal legend.",
     "image": "https://books.google.com/books/content?id=5QKSDwAAQBAJ&printsec=frontcover&img=1&zoom=1"
   }
-]
-
-    ]);
+]);
     @tracked filteredBooks = [];
     @tracked btnValue = "Borrow";
     @tracked borrowBooksDate = [];
@@ -172,11 +169,15 @@ export default class BooksService extends Service {
     }
 
     getBooks() {
+      // localStorage.removeItem('books');
+      // return;
+      // console.log(this.books)
         let getbooks = localStorage.getItem('books');
         if (getbooks) {
-            let parse = JSON.parse(getbooks);
-            this.books.push(...parse.map(book => new TrackedObject(book)));
-            this.filteredBooks = this.books;
+          let parse = JSON.parse(getbooks);
+          this.books = [];
+          this.books.push(...parse.map(book => new TrackedObject(book)));
+          this.filteredBooks = this.books;
         }
         this.bookId = JSON.parse(localStorage.getItem('book-id'));
         this.saveSBooks();
