@@ -1,0 +1,11 @@
+<FormComponent @heading="Create Account" @btn-value="Create Account">
+    <:default>
+
+        <CreateAccount />
+    </:default>
+
+    <:create>
+        <p>Already have an account? <LinkTo @route="login">Sign In</LinkTo>
+        </p>
+    </:create>
+</FormComponent>

@@ -1,0 +1,31 @@
+<div id="admin-table">
+    {{#if @data}}
+    <table>
+        <thead>
+            <tr>
+                {{#each @headings as |heading|}}
+                <th>{{heading}}</th>
+                {{/each}}
+            </tr>
+        </thead>
+        <tbody>
+            {{#each @data as |item|}}
+            <tr>
+                {{#each @fields as |field|}}
+                <td>{{get item field}}</td>
+
+                {{/each}}
+
+                {{#if @onDelete}}
+                <td>
+                    <button type="button" {{on "click" (fn @onDelete item)}}>Delete</button>
+                </td>
+                {{/if}}
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <p>No Records Available</p>
+    {{/if}}
+</div>

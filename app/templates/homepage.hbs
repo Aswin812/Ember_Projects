@@ -1,0 +1,9 @@
+<Header />
+<div class="options">
+    <Options />
+    <Search @search={{this.computerSearch}} />
+</div>
+<Books as |book bookActions btnValue stopPropagation |>
+    <button type="button" id="borrow-btn" {{on "click" (fn bookActions book)}} {{on "click" stopPropagation}}
+        value={{btnValue}}>{{btnValue}}</button>
+</Books>

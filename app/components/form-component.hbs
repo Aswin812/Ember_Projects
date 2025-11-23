@@ -1,0 +1,10 @@
+<main id="main">
+    <div id="container">
+        <h2>{{@heading}}</h2>
+        <form id="formComponent">
+            {{yield}}
+            <input type="submit" id="btn" value={{@btn-value}} {{on "click" this.handleSubmit}}>
+        </form>
+        {{yield to="create"}}
+    </div>
+</main>

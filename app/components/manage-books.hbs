@@ -1,0 +1,10 @@
+<LinkTo type="button" id="add-btn" @route="admin-page.add-book">Add Book</LinkTo>
+
+<Books @isAdmin="true" as | _ _ _ _ id|>
+    <div id="btns">
+        <LinkTo type="button" id="edit-btn" @route="admin-page.edit-book" @model={{id}}>
+            Edit
+        </LinkTo>
+        <button type="button" id="delete-btn" {{on "click" (fn this.deleteBook id)}}>Delete</button>
+    </div>
+</Books>

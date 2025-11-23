@@ -1,0 +1,17 @@
+<div id="header">
+    <h1>Library Management</h1>
+    {{yield}}
+    <div id="currentuser">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="30" height="30">
+                <path
+                    d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z" />
+            </svg>
+            <p>
+                <LinkTo @route={{if (eq this.currentUser.currentUser.name "Admin" ) "admin-page" "homepage" }}>
+                    {{this.currentUser.currentUser.name}}</LinkTo>
+            </p>
+        </div>
+        <button type="button" id="logout-btn" {{on "click" this.logout}}>Logout</button>
+    </div>
+</div>

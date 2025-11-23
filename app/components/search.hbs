@@ -1,0 +1,4 @@
+<div class="search">
+    <input type="text" placeholder="Search Books" id="input" value={{@search}} {{on "input" this.getInput}}>
+    <button id="search-btn" type="button" {{on "click" this.searchBook}}>Search</button>
+</div>

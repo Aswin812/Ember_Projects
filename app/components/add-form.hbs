@@ -1,0 +1,47 @@
+<div id="add-container">
+    <h1>{{@heading}}</h1>
+    <form>
+        {{yield}}
+        <div>
+            Title :
+            <input type="text" id="title" value={{@book.title}}>
+        </div>
+        <div>
+            Sub-Title :
+            <input type="text" id="sub-title" value={{@book.subtitle}}>
+        </div>
+        <div>
+            Author :
+            <input type="text" id="author" value={{@book.author}}>
+        </div>
+        <div>
+            Publisher :
+            <input type="text" id="publisher" value={{@book.publisher}}>
+        </div>
+        <div>
+            Published Year :
+            <input type="number" id="year" value={{@book.publishedYear}}>
+        </div>
+        <div>
+            Genre :
+            <input type="text" id="genre" value={{@book.genre}}>
+        </div>
+        <div>
+            Language :
+            <input type="text" id="language" value={{@book.language}}>
+        </div>
+        <div>
+            Pages :
+            <input type="number" id="pages" value={{@book.pages}}>
+        </div>
+        <div>
+            Stoke :
+            <input type="number" id="stock" value={{@book.stock}}>
+        </div>
+        <div>
+            Description :
+            <textarea type="text" id="description">{{@book.description}}</textarea>
+        </div>
+        <input type="submit" id="add-btn" value={{@btn-value}} {{on "click" this.handleSubmit}}>
+    </form>
+</div>

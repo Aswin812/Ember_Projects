@@ -1,0 +1,7 @@
+<div id="nav-bar">
+    {{#each @options as |option|}}
+    <div class="nav-options">
+        <LinkTo @route={{this.getRouteName option }}>{{option}}</LinkTo>
+    </div>
+    {{/each}}
+</div>
