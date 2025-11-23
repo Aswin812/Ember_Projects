@@ -18,6 +18,10 @@ module.exports = function (environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
+
+    API_HOST: environment === 'production'
+      ? 'https://your-live-api.com'
+      : 'http://localhost:3000'
   };
 
   if (environment === 'development') {
