@@ -53,6 +53,6 @@ export default class BorrowedBooksService extends Service {
     }
 
     getStudentsByBorrowedBooks(title){
-      return this.borrowedBooks.filter(b => b.bookTitle === title).map(b => b.studentName);
+      return this.borrowedBooks.filter(b => b.bookTitle === title && b.isReturned === 'Not Returned').map(b => b.studentName);
     }
 }
