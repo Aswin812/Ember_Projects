@@ -1,0 +1,59 @@
+{{! template-lint-disable no-invalid-interactive }}
+<div
+  class="book"
+  {{on "click" (fn this.showBookDetails @book)}}
+  {{on "clikc" this.stopPropagation}}
+>
+  <img src={{@book.image}} alt="book-image" />
+  <div class="detail">
+    <p class="title">{{@book.title}}</p>
+    <p class="subtitle">{{@book.subtitle}}</p>
+    {{yield
+      this.getReturnDays
+      this.returnBook
+      this.borrowBook
+      @book.id
+      this.deleteBook
+      @book.stock
+      this.stopPropagation
+    }}
+  </div>
+</div>
+
+{{#if this.selectedBook}}
+  <div class="popup" {{close-popup this.closeDetails}}>
+    <div class="book-popup">
+      <span class="close" {{on "click" this.closeDetails}}>&times;</span>
+      <div class="temp">
+        <img src={{this.selectedBook.image}} alt="BookImage" />
+        <div class="book-details">
+          <h2>{{this.selectedBook.title}}</h2>
+          <p><strong>Subtitle:</strong> {{this.selectedBook.subtitle}}</p>
+          <p><strong>Author:</strong> {{this.selectedBook.author}}</p>
+          <p><strong>Publisher:</strong> {{this.selectedBook.publisher}}</p>
+          <p><strong>Published Year:</strong>
+            {{this.selectedBook.publishedYear}}</p>
+          <p><strong>Genre:</strong> {{this.selectedBook.genre}}</p>
+          <p><strong>Language:</strong> {{this.selectedBook.language}}</p>
+          <p><strong>Pages:</strong> {{this.selectedBook.pages}}</p>
+          <p><strong>Stock:</strong> {{this.selectedBook.stock}}</p>
+          <p><strong>Description:</strong></p>
+          <p class="description">{{this.selectedBook.description}}</p>
+        </div>
+      </div>
+      {{#if @isAdmin}}
+        <span
+          id="borrowed-by"
+          {{on "click" (fn this.getStudentsByBorrowedBooks @book)}}
+        >Brrowed By...</span>
+        {{#if (gte this.borrowedByBook.length 0)}}
+          <AdminTable
+            @headings={{array "NAME" "EMAIL" "MOBILE NUMBER"}}
+            @fields={{array "name" "email" "mobileNumber"}}
+            @data={{this.borrowedByBook}}
+          />
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+{{/if}}

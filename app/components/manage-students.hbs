@@ -1,4 +1,0 @@
-<LinkTo type="button" id="add-btn" @route="admin-page.add-student">Add Student</LinkTo>
-
-<AdminTable @headings={{array "NAME" "EMAIL" "MOBILE NUMBER" "ACTION" }} @fields={{array "name" "email" "mobileNumber"
-    }} @data={{this.students.students}} @onDelete={{this.deleteStudent}} />

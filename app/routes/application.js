@@ -1,9 +1,9 @@
 import Route from '@ember/routing/route';
-import {service} from '@ember/service';
+// import {service} from '@ember/service';
 
 export default class ApplicationRoute extends Route {
-  @service router;
-  model(){
-    this.router.transitionTo('login');
-  }
+  // @service router;
+  // model(){
+  //   this.router.transitionTo('login');
+  // }
 }

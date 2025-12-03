@@ -9,7 +9,6 @@ export default class HeaderComponent extends Component {
 
     @action
     logout() {
-        this.books.showBorrowedBooks("All");
         this.currentUser.logout();
         this.router.transitionTo('login');
     }

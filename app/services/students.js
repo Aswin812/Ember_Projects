@@ -1,14 +1,12 @@
-import { TrackedArray, TrackedObject } from 'tracked-built-ins';
+import { tracked, TrackedArray, TrackedObject } from 'tracked-built-ins';
 import Service from '@ember/service';
-import { inject as currentuser } from '@ember/service';
-import { inject as books } from '@ember/service';
-import { inject as borrowedBook } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class StudentsService extends Service {
-    @currentuser currentUser;
-    @books books;
-    @borrowedBook borrowedBooks;
-    students = new TrackedArray([]);
+    @service currentUser;
+    @service books;
+    @service borrowedBooks;
+    @tracked students = new TrackedArray([]);
     borrowedBookId = 1;
 
     constructor() {
@@ -48,8 +46,7 @@ export default class StudentsService extends Service {
         return false;
     }
 
-    createAccount(values) {
-        // console.log("create")
+    createAccount(values, isAdmin) {
         let newStudent = {
             name: values[0],
             email: values[1],
@@ -59,13 +56,18 @@ export default class StudentsService extends Service {
         };
 
         this.students.push(new TrackedObject(newStudent));
-        this.currentUser.setCurrentuser(newStudent);
+        if(!isAdmin)this.currentUser.setCurrentuser(newStudent);
 
         this.saveStudents();
     }
 
+    getStudentsByName(names){
+      return this.students.filter(s => names.includes(s.name));
+    }
+
     deleteStudent(student) {
         this.students.splice(this.students.indexOf(student), 1);
+        alert("Student Deleted")
         this.saveStudents();
     }
 
@@ -96,17 +98,18 @@ export default class StudentsService extends Service {
         this.books.changeBookStock(-1, b);
         this.borrowedBooks.addBorrowBook(this.currentUser.currentUser.name, b.title, today, returndate, "Not Returned");
         this.saveStudents();
+        this.currentUser.setCurrentuser(this.students[index])
     }
 
     returnBook(book) {
         let index = this.students.findIndex(s => s.name === this.currentUser.currentUser.name);
         let borrowedBooks = this.students[index].borrowedBooks;
-        // console.log(borrowedBooks + " " + index);
         borrowedBooks.splice(borrowedBooks.findIndex(b => b.book.id == book.id), 1);
         alert("Book Returned");
         this.books.changeBookStock(1, book);
-        this.books.showBorrowedBooks("Borrowed");
         this.borrowedBooks.markAsReturned(this.currentUser.currentUser.name, book.title);
         this.saveStudents();
+        this.currentUser.setCurrentuser(this.students[index])
+        this.books.filteredBooks = this.currentUser.currentUser.borrowedBooks.map(b => new TrackedObject(b.book));
     }
 }

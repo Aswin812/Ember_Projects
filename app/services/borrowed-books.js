@@ -36,22 +36,23 @@ export default class BorrowedBooksService extends Service {
 
         this.borrowedBooks.push(new TrackedObject(borrowBook));
         this.borrowedBookId += 1;
-        // console.log(this.borrowedBooks)
         this.saveBorrowedBooks();
     }
 
     markAsReturned(name, title) {
         for (let b of this.borrowedBooks) {
             if (b.studentName === name && b.bookTitle === title) {
-                // console.log("Return")
                 let today = new Date();
                 today = today.toLocaleDateString("en-GB");
                 b.returnDate = today;
                 b.isReturned = "Returned";
-                // console.log(this.borrowedBooks)
                 this.saveBorrowedBooks();
                 return;
             }
         }
+    }
+
+    getStudentsByBorrowedBooks(title){
+      return this.borrowedBooks.filter(b => b.bookTitle === title).map(b => b.studentName);
     }
 }

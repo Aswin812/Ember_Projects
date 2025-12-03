@@ -19,7 +19,7 @@ export default class AddFormComponent extends Component {
 
         let temp = values.pop();
         if (temp === "Add Student") {
-            this.students.createAccount(values);
+            this.students.createAccount(values, true);
             this.router.transitionTo('admin-page.manage-students');
         }
         else if (temp === "Add Book") {

@@ -1,3 +1,43 @@
 <AddForm @heading="Edit Book" @btn-value="Edit Book" @book={{@model}}>
     <input type="hidden" value="{{@model.id}}">
+    <div>
+            Title :
+            <input type="text" id="title" value={{@model.title}}>
+        </div>
+        <div>
+            Sub-Title :
+            <input type="text" id="sub-title" value={{@model.subtitle}}>
+        </div>
+        <div>
+            Author :
+            <input type="text" id="author" value={{@model.author}}>
+        </div>
+        <div>
+            Publisher :
+            <input type="text" id="publisher" value={{@model.publisher}}>
+        </div>
+        <div>
+            Published Year :
+            <input type="number" id="year" value={{@model.publishedYear}}>
+        </div>
+        <div>
+            Genre :
+            <input type="text" id="genre" value={{@model.genre}}>
+        </div>
+        <div>
+            Language :
+            <input type="text" id="language" value={{@model.language}}>
+        </div>
+        <div>
+            Pages :
+            <input type="number" id="pages" value={{@model.pages}}>
+        </div>
+        <div>
+            Stock :
+            <input type="number" id="stock" value={{@model.stock}}>
+        </div>
+        <div>
+            Description :
+            <textarea type="text" id="description">{{@model.description}}</textarea>
+        </div>
 </AddForm>

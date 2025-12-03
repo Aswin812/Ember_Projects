@@ -1,3 +1,12 @@
 import Route from '@ember/routing/route';
+import {service} from '@ember/service';
 
-export default class CreateAccountRoute extends Route {}
+export default class CreateAccountRoute extends Route {
+  @service currentUser;
+    @service router;
+    beforeModel(){
+      if(!this.currentUser.isEmpty()){
+        this.router.transitionTo('homepage.books');
+      }
+    }
+}

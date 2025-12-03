@@ -1,25 +1,32 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
-function wait(){
+function wait() {
   return new Promise(resolve => {
-    setTimeout(() => resolve(), 1500);
+    setTimeout(() => resolve(), 500);
   })
 }
 
 export default class HomepageRoute extends Route {
-    @service books;
-    @service router;
-    @service currentUser;
+  @service books;
+  @service router;
+  @service currentUser;
+  @tracked sortBy = 'None';
 
-    async model() {
-        if (this.currentUser.currentUser.name === undefined) {
-          this.router.transitionTo('login');
-          return;
-        }
-        await wait();
-        if (this.books.books.length === 0) {
-          this.books.getBooks();
-        }
+  async model() {
+    if (this.currentUser.isEmpty()) {
+      this.router.transitionTo('login');
+      return;
     }
+
+    // await wait();
+    if (this.books.books.length === 0) {
+      this.books.getBooks();
+    }
+  }
+
+  afterModel(){
+    this.router.transitionTo('homepage.books')
+  }
 }

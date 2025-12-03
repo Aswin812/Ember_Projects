@@ -1,5 +1,4 @@
 <div id="admin-table">
-    {{#if @data}}
     <table>
         <thead>
             <tr>
@@ -18,14 +17,13 @@
 
                 {{#if @onDelete}}
                 <td>
-                    <button type="button" {{on "click" (fn @onDelete item)}}>Delete</button>
+                    <button type="button" {{on "click" (fn this.deleteStudent item)}}>Delete</button>
                 </td>
                 {{/if}}
             </tr>
+            {{else}}
+              <p class="msg">No Records Available</p>
             {{/each}}
         </tbody>
     </table>
-    {{else}}
-    <p>No Records Available</p>
-    {{/if}}
 </div>

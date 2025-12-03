@@ -1,4 +1,4 @@
 <div class="search">
-    <input type="text" placeholder="Search Books" id="input" value={{@search}} {{on "input" this.getInput}}>
+    <input type="text" placeholder="Search Books" id="input" value={{this.queryParams.search}} {{on "input" this.getInput}} {{on "keydown" this.keyPress}} {{auto-focus}}>
     <button id="search-btn" type="button" {{on "click" this.searchBook}}>Search</button>
 </div>

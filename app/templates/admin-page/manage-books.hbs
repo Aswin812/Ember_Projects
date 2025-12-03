@@ -1,2 +1,14 @@
-<ManageBooks />
-{{outlet}}
+<LinkTo type="button" id="add-btn" @route="admin-page.add-book">Add Book</LinkTo>
+
+<div id="books">
+  {{#each @model as |book|}}
+    <Book @book={{book}} @isAdmin="true" as |_ _ _ id deleteBook _ stopPropagation|>
+      <div id="btns">
+        <LinkTo type="button" id="edit-btn" @route="admin-page.edit-book" @model={{id}} {{on 'click' stopPropagation}}>
+            Edit
+        </LinkTo>
+        <button type="button" id="delete-btn" {{on "click" (fn deleteBook id)}} {{on 'click' stopPropagation}}>Delete</button>
+      </div>
+    </Book>
+  {{/each}}
+</div>

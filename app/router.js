@@ -9,7 +9,10 @@ export default class Router extends EmberRouter {
 Router.map(function () {
   this.route('create-account');
   this.route('login');
-  this.route('homepage');
+  this.route('homepage', function() {
+    this.route('borrowed-books');
+    this.route('books');
+  });
   this.route('admin-page', function () {
     this.route('manage-students', function () { });
     this.route('manage-books', function () { });
@@ -22,4 +25,5 @@ Router.map(function () {
   });
   this.route('loading');
   this.route('error');
+  this.route('not-found', {path : "/*path"});
 });

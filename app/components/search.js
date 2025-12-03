@@ -4,20 +4,33 @@ import { tracked } from '@glimmer/tracking'
 import { service } from '@ember/service';
 
 export default class SearchComponent extends Component {
-    @service books;
-    @service router;
-    @tracked searchBoxValue = "";
+  @service books;
+  @service router;
+  @tracked searchBoxValue = "";
 
-    @action
-    getInput(event) {
-        this.searchBoxValue = event.target.value;
-    }
+  get queryParams() {
+    return this.router.currentRoute.queryParams;
+  }
 
-    @action
-    searchBook() {
-      this.router.transitionTo('homepage', {
-         queryParams : {search : this.searchBoxValue}
-      })
-      this.books.searchBooks(this.searchBoxValue.trim());
+  @action
+  getInput(event) {
+    this.searchBoxValue = event.target.value;
+  }
+
+  @action
+  searchBook() {
+    let currentRoute = this.router.currentRouteName;
+    if (currentRoute !== null) {
+      currentRoute = currentRoute.split('.').splice(1);
     }
+    this.searchBoxValue = (this.searchBoxValue || '').trim();
+    this.router.transitionTo(`homepage.${currentRoute}`, { queryParams: { search: this.searchBoxValue } });
+  }
+
+  @action
+  keyPress(event) {
+    if (event.key === 'Enter') {
+      this.searchBook();
+    }
+  }
 }

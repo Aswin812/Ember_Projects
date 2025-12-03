@@ -1,0 +1,10 @@
+<div id="books">
+  {{#each @model.filteredBooks as |book|}}
+    <Book @book={{book}} as |returnDays returnBook _ _ _ _ stopPropagation|>
+      <p class="msg">{{returnDays book}}</p>
+      <button type="button" id="borrow-btn" {{on 'click' (fn returnBook book)}} {{on 'click' stopPropagation}}>Return</button>
+    </Book>
+    {{else}}
+    <p>No Records Available</p>
+  {{/each}}
+</div>

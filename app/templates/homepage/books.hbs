@@ -1,0 +1,14 @@
+<div id="books">
+  {{#each @model.filteredBooks as |book|}}
+    <Book @book={{book}} as |_ _ borrowBook _ _ stock stopPropagation|>
+      {{#if (gt stock 0)}}
+        <button type="button" id="borrow-btn" {{on 'click' (fn borrowBook book)}} {{on 'click' stopPropagation}}>Borrow</button>
+      {{else}}
+        {{!-- template-lint-disable no-invalid-interactive --}}
+        <p class="msg" {{on 'click' stopPropagation}}>Out of Stock</p>
+      {{/if}}
+    </Book>
+    {{else}}
+    <p>No Records Available</p>
+  {{/each}}
+</div>
