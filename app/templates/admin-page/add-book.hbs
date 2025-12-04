@@ -1,42 +1,5 @@
-<AddForm @heading="Add Book" @btn-value="Add Book">
-  <div>
-            Title :
-            <input type="text" id="title" >
-        </div>
-        <div>
-            Sub-Title :
-            <input type="text" id="sub-title" >
-        </div>
-        <div>
-            Author :
-            <input type="text" id="author">
-        </div>
-        <div>
-            Publisher :
-            <input type="text" id="publisher">
-        </div>
-        <div>
-            Published Year :
-            <input type="number" id="year">
-        </div>
-        <div>
-            Genre :
-            <input type="text" id="genre" >
-        </div>
-        <div>
-            Language :
-            <input type="text" id="language">
-        </div>
-        <div>
-            Pages :
-            <input type="number" id="pages" >
-        </div>
-        <div>
-            Stock :
-            <input type="number" id="stock" >
-        </div>
-        <div>
-            Description :
-            <textarea type="text" id="description"></textarea>
-        </div>
+<AddForm @heading="Add Book" as |handleSubmit|>
+    <FormComponent @btn-value="Add Book" @id="add-form" @handleSubmit={{handleSubmit}}>
+      <BookForm/>
+    </FormComponent>
 </AddForm>

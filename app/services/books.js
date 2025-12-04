@@ -5,7 +5,7 @@ import { service } from '@ember/service';
 
 export default class BooksService extends Service {
   @service currentUser;
-  books = new TrackedArray([
+  @tracked books = new TrackedArray([
     {
       "id": 1,
       "title": "Atomic Habits",
@@ -159,7 +159,7 @@ export default class BooksService extends Service {
   ]);
   @tracked filteredBooks = [];
   @tracked btnValue = "Borrow";
-  bookId = 1;
+  bookId = 11;
 
 
   constructor() {
@@ -184,7 +184,7 @@ export default class BooksService extends Service {
   }
 
   getAllBooks() {
-    this.filteredBooks = new TrackedArray(this.books);
+    this.filteredBooks = [...this.books];
   }
 
   getBorrowedBooks() {
@@ -218,6 +218,7 @@ export default class BooksService extends Service {
 
 
   addBook(values) {
+    console.log(this.bookId);
     let newBook = {
       id: this.bookId,
       title: values[0],
@@ -235,7 +236,9 @@ export default class BooksService extends Service {
 
     this.books.push(new TrackedObject(newBook));
     this.bookId += 1;
+    console.log(this.bookId);
     this.saveSBooks();
+    console.log(newBook)
   }
 
   editBook(values) {
@@ -260,6 +263,7 @@ export default class BooksService extends Service {
 
     if (index !== -1) {
       this.books.splice(index, 1);
+      this.books = [...this.books]
       alert("Book Deleted")
       this.saveSBooks();
     }

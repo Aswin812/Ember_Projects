@@ -1,18 +1,18 @@
-<FormComponent @heading="Library Login" @btn-value="Login">
-    <:default>
-
-        <div>
-            Email :
-            <input type="text" id="email">
-        </div>
-        <div>
-            Password :
-            <input type="password" id="password">
-        </div>
-    </:default>
-    <:create>
-        <p>Don't have an account? <LinkTo @route="create-account">Create Account</LinkTo>
-        </p>
-    </:create>
-
-</FormComponent>
+<Authentication @heading="Library Login" as |handleSubmit errorMsg|>
+  <FormComponent @btn-value="Login" @id="auth-form" @handleSubmit={{handleSubmit}}>
+    <div>
+      Email :
+      <input type="email" id="email" required>
+    </div>
+    <div>
+      Password :
+      <input type="password" id="password" required>
+    </div>
+    {{#if errorMsg}}
+    <p id="error">{{errorMsg}}</p>
+    {{/if}}
+  </FormComponent>
+  <p>Don't have an account?
+    <LinkTo @route="create-account">Create Account</LinkTo>
+  </p>
+</Authentication>

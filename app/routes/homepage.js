@@ -2,11 +2,11 @@ import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
-function wait() {
-  return new Promise(resolve => {
-    setTimeout(() => resolve(), 500);
-  })
-}
+// function wait() {
+//   return new Promise(resolve => {
+//     setTimeout(() => resolve(), 500);
+//   })
+// }
 
 export default class HomepageRoute extends Route {
   @service books;
@@ -14,12 +14,19 @@ export default class HomepageRoute extends Route {
   @service currentUser;
   @tracked sortBy = 'None';
 
-  async model() {
+  beforeModel(){
     if (this.currentUser.isEmpty()) {
       this.router.transitionTo('login');
       return;
     }
 
+    if(this.currentUser.currentUser.email === 'admin@gmail.com'){
+      this.router.transitionTo('admin-page')
+    }
+
+  }
+
+  async model() {
     // await wait();
     if (this.books.books.length === 0) {
       this.books.getBooks();

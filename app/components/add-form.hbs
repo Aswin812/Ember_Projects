@@ -1,7 +1,4 @@
 <div id="add-container">
     <h1>{{@heading}}</h1>
-    <form>
-        {{yield}}
-        <input type="submit" id="add-btn" value={{@btn-value}} {{on "click" this.handleSubmit}}>
-    </form>
+    {{yield this.handleSubmit}}
 </div>

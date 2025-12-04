@@ -1,11 +1,8 @@
-<FormComponent @heading="Create Account" @btn-value="Create Account">
-    <:default>
-
-        <CreateAccount />
-    </:default>
-
-    <:create>
-        <p>Already have an account? <LinkTo @route="login">Sign In</LinkTo>
-        </p>
-    </:create>
-</FormComponent>
+<Authentication @heading="Create Account" as |handleSubmit|>
+  <FormComponent @btn-value="Create Account" @id="auth-form" @handleSubmit={{handleSubmit}}>
+    <CreateAccount />
+  </FormComponent>
+  <p>Already have an account?
+    <LinkTo @route="login">Sign In</LinkTo>
+  </p>
+</Authentication>

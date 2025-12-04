@@ -43,7 +43,7 @@ body {
     text-align: center;
 }
 
-#formComponent {
+#auth-form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -51,14 +51,14 @@ body {
     margin-bottom: 20px;
 }
 
-#formComponent div {
+#auth-form div {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 16px;
 }
 
-#formComponent div input {
+#auth-form div input {
     width: 230px;
     padding: 10px 12px;
     margin-left: 10px;
@@ -66,6 +66,10 @@ body {
     border: 1px solid #ccc;
     font-size: 16px;
     outline: none;
+}
+
+#auth-form #error{
+  color: red;
 }
 
 #btn {
@@ -398,7 +402,7 @@ body {
     color: rgb(49 49 49);
 }
 
-#add-container form {
+#add-container #add-form {
     width: 45%;
     display: flex;
     flex-direction: column;
@@ -406,14 +410,14 @@ body {
     gap: 30px;
 }
 
-#add-container form div {
+#add-container #add-form div {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#add-container form div input {
+#add-container #add-form div input {
     border: none;
     outline: none;
     border-bottom: 1px solid rgb(54 54 54);
@@ -422,7 +426,7 @@ body {
     font-size: 16px;
 }
 
-#add-container form div textarea {
+#add-container #add-form div textarea {
     width: 60%;
     height: 60px;
     outline: none;
@@ -430,7 +434,7 @@ body {
     padding: 5px;
 }
 
-#add-container form #add-btn {
+#add-container #add-form #add-btn {
     margin: 0;
     margin-top: 30px;
     padding-top: 0;
