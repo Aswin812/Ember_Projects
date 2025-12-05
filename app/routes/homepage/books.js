@@ -11,6 +11,7 @@ export default class HomepageBooksRoute extends Route {
   };
 
   model(params){
+    this.books.getAllBooks();
     if (params.search !== null) {
       this.books.searchBooks(params.search, this.books.books);
     }
@@ -23,7 +24,7 @@ export default class HomepageBooksRoute extends Route {
     if(currentRoute !== null){
       currentRoute = currentRoute.split('.').splice(1);
       if(currentRoute[0] === 'borrowed-books'){
-        this.books.getBooks();
+        this.books.getAllBooks();
       }
     }
     return this.books;

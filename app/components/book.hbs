@@ -16,6 +16,7 @@
       this.deleteBook
       @book.stock
       this.stopPropagation
+      this.getBorrowedBookHistory
     }}
   </div>
 </div>
@@ -42,16 +43,17 @@
         </div>
       </div>
       {{#if @isAdmin}}
-        <span
-          id="borrowed-by"
-          {{on "click" (fn this.getStudentsByBorrowedBooks @book)}}
-        >Brrowed By...</span>
-        {{#if (gte this.borrowedByBook.length 0)}}
+        {{#if (gte this.bookHistory.length 0)}}
           <AdminTable
-            @headings={{array "NAME" "EMAIL" "MOBILE NUMBER"}}
-            @fields={{array "name" "email" "mobileNumber"}}
-            @data={{this.borrowedByBook}}
+            @headings={{array "NAME" "TITLE" "Borrow Date" "Return Date" "IsReturn"}}
+            @fields={{array "student_id" "book_id" "borrowDate" "returnDate" "isReturned"}}
+            @data={{this.bookHistory}}
           />
+          {{else}}
+            <span
+          id="borrowed-by"
+          {{on "click" (fn this.getBookHistory @book.id)}}
+        >Brrowed By...</span>
         {{/if}}
       {{/if}}
     </div>

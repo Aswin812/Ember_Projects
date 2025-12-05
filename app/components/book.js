@@ -9,7 +9,7 @@ export default class Book extends Component {
   @service students;
   @service borrowedBooks;
   @tracked selectedBook = null;
-  @tracked borrowedByBook = null;
+  @tracked bookHistory = null;
 
   @action
   showBookDetails(book) {
@@ -19,13 +19,12 @@ export default class Book extends Component {
   @action
   closeDetails(){
     this.selectedBook = null;
-    this.borrowedByBook = null;
+    this.bookHistory = null;
   }
 
   @action
-  getStudentsByBorrowedBooks(book){
-    let names = this.borrowedBooks.getStudentsByBorrowedBooks(book.title);
-    this.borrowedByBook = this.students.getStudentsByName(names);
+  getBookHistory(book_id){
+    this.bookHistory = this.borrowedBooks.getBookHistory(book_id);
   }
 
   @action
@@ -34,13 +33,13 @@ export default class Book extends Component {
   }
 
   @action
-  borrowBook(book) {
-    this.students.borrowBook(book);
+  borrowBook(book_id) {
+    this.students.borrowBook(book_id);
   }
 
   @action
-  returnBook(book) {
-    this.students.returnBook(book);
+  returnBook(id, book_id) {
+    this.students.returnBook(id, book_id);
   }
 
   @action
@@ -50,10 +49,14 @@ export default class Book extends Component {
   }
 
   @action
+  getBorrowedBookHistory(id){
+    return this.books.getBorrowedBookHistory(id);
+  }
+
+  @action
   getReturnDays(book) {
-    let borrowBook = this.currentUser.currentUser.borrowedBooks.find(b => b.book.id === book.id);
     let today = new Date();
-    let returnDate = new Date(Date.parse(borrowBook.returnDate.split('/').reverse().join('-')));
+    let returnDate = new Date(Date.parse(book.returnDate.split('/').reverse().join('-')));
 
     let returnDays = Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24));
 

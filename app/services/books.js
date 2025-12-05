@@ -5,6 +5,7 @@ import { service } from '@ember/service';
 
 export default class BooksService extends Service {
   @service currentUser;
+  @service borrowedBooks;
   @tracked books = new TrackedArray([
     {
       "id": 1,
@@ -19,7 +20,9 @@ export default class BooksService extends Service {
       "stock": 10,
       "price": 499,
       "description": "Atomic Habits offers a framework for improving yourself every day. James Clear reveals practical strategies for forming good habits, breaking bad ones, and mastering the tiny behaviors that lead to remarkable results.",
-      "image": "https://books.google.com/books/content?id=RSK-DwAAQBAJ&printsec=frontcover&img=1&zoom=1"
+      "image": "https://books.google.com/books/content?id=RSK-DwAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "isDeleted" : false,
+      "borrowedBooks_id" : []
     },
     {
       "id": 2,
@@ -34,7 +37,9 @@ export default class BooksService extends Service {
       "stock": 10,
       "price": 420,
       "description": "A spiritual classic that teaches the importance of living in the present moment. Eckhart Tolle guides readers to free themselves from the tyranny of their thoughts and find peace by being fully present.",
-      "image": "https://books.google.com/books/content?id=QyGKtAEACAAJ&printsec=frontcover&img=1&zoom=1"
+      "image": "https://books.google.com/books/content?id=QyGKtAEACAAJ&printsec=frontcover&img=1&zoom=1",
+      "isDeleted" : false,
+      "borrowedBooks_id" : []
     },
     {
       "id": 3,
@@ -49,7 +54,9 @@ export default class BooksService extends Service {
       "stock": 10,
       "price": 399,
       "description": "Mark Manson cuts through the clichés to show us that improving our lives hinges not on caring about more things, but on caring about fewer things—only what truly matters.",
-      "image": "https://books.google.com/books/content?id=4vUuDQAAQBAJ&printsec=frontcover&img=1&zoom=1"
+      "image": "https://books.google.com/books/content?id=4vUuDQAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "isDeleted" : false,
+      "borrowedBooks_id" : []
     },
     {
       "id": 4,
@@ -64,7 +71,9 @@ export default class BooksService extends Service {
       "stock": 10,
       "price": 350,
       "description": "Ikigai introduces the Japanese concept of 'reason for being' and how discovering your ikigai can lead to a fulfilling and meaningful life.",
-      "image": "https://books.google.com/books/content?id=8lNnDQAAQBAJ&printsec=frontcover&img=1&zoom=1"
+      "image": "https://books.google.com/books/content?id=8lNnDQAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "isDeleted" : false,
+      "borrowedBooks_id" : []
     },
     {
       "id": 5,
@@ -79,7 +88,9 @@ export default class BooksService extends Service {
       "stock": 10,
       "price": 480,
       "description": "Jay Shetty draws on his experience as a monk to share practical steps and wisdom to overcome negativity, reduce stress, and discover your purpose.",
-      "image": "https://books.google.com/books/content?id=ZlM6DwAAQBAJ&printsec=frontcover&img=1&zoom=1"
+      "image": "https://books.google.com/books/content?id=ZlM6DwAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "isDeleted" : false,
+      "borrowedBooks_id" : []
     },
     {
       "id": 6,
@@ -94,7 +105,9 @@ export default class BooksService extends Service {
       "stock": 10,
       "price": 450,
       "description": "Stephen Covey presents a principle-centered approach for solving personal and professional problems. The book teaches how to live with integrity, fairness, and human dignity.",
-      "image": "https://books.google.com/books/content?id=ktZzEAAAQBAJ&printsec=frontcover&img=1&zoom=1"
+      "image": "https://books.google.com/books/content?id=ktZzEAAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "isDeleted" : false,
+      "borrowedBooks_id" : []
     },
     {
       "id": 7,
@@ -109,7 +122,9 @@ export default class BooksService extends Service {
       "stock": 10,
       "price": 520,
       "description": "Dr. Joe Dispenza explores the power of the mind to heal the body and create lasting change through the science of neuroplasticity and meditation.",
-      "image": "https://books.google.com/books/content?id=TwXhoAEACAAJ&printsec=frontcover&img=1&zoom=1"
+      "image": "https://books.google.com/books/content?id=TwXhoAEACAAJ&printsec=frontcover&img=1&zoom=1",
+      "isDeleted" : false,
+      "borrowedBooks_id" : []
     },
     {
       "id": 8,
@@ -124,7 +139,9 @@ export default class BooksService extends Service {
       "stock": 10,
       "price": 340,
       "description": "Don Miguel Ruiz reveals the source of self-limiting beliefs that rob us of joy and create needless suffering. The book offers four simple agreements to live by for personal freedom.",
-      "image": "https://books.google.com/books/content?id=KaXdDwAAQBAJ&printsec=frontcover&img=1&zoom=1"
+      "image": "https://books.google.com/books/content?id=KaXdDwAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "isDeleted" : false,
+      "borrowedBooks_id" : []
     },
     {
       "id": 9,
@@ -139,7 +156,9 @@ export default class BooksService extends Service {
       "stock": 10,
       "price": 360,
       "description": "Viktor Frankl, a Holocaust survivor, describes his experiences in Nazi camps and introduces logotherapy — the belief that the search for meaning is the primary human drive.",
-      "image": "https://books.google.com/books/content?id=VwUwDwAAQBAJ&printsec=frontcover&img=1&zoom=1"
+      "image": "https://books.google.com/books/content?id=VwUwDwAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "isDeleted" : false,
+      "borrowedBooks_id" : []
     },
     {
       "id": 10,
@@ -154,11 +173,13 @@ export default class BooksService extends Service {
       "stock": 1,
       "price": 380,
       "description": "The Alchemist tells the story of Santiago, a shepherd boy who dreams of finding a worldly treasure and discovers that true fulfillment lies in following one’s personal legend.",
-      "image": "https://books.google.com/books/content?id=5QKSDwAAQBAJ&printsec=frontcover&img=1&zoom=1"
+      "image": "https://books.google.com/books/content?id=5QKSDwAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "isDeleted" : false,
+      "borrowedBooks_id" : []
     }
   ]);
-  @tracked filteredBooks = [];
-  @tracked btnValue = "Borrow";
+  @tracked filteredBooks = new TrackedArray([]);
+  borrowedBookHistory = [];
   bookId = 11;
 
 
@@ -169,8 +190,8 @@ export default class BooksService extends Service {
 
   getBooks() {
     // localStorage.removeItem('books');
+    // localStorage.removeItem('book-id')
     // return;
-    // console.log(this.books)
     let getbooks = localStorage.getItem('books');
     if (getbooks) {
       let parse = JSON.parse(getbooks);
@@ -178,17 +199,32 @@ export default class BooksService extends Service {
       this.books.push(...parse.map(book => new TrackedObject(book)));
       this.filteredBooks = this.books;
     }
-    this.bookId = JSON.parse(localStorage.getItem('book-id'));
+    let id = JSON.parse(localStorage.getItem('book-id'));
+    if(id){
+      this.bookId = id;
+    }
     this.saveSBooks();
     // console.log(this.books)
   }
 
   getAllBooks() {
-    this.filteredBooks = [...this.books];
+    this.filteredBooks = this.books.filter(b => b.isDeleted !== true);
   }
 
   getBorrowedBooks() {
-    this.filteredBooks = this.currentUser.currentUser.borrowedBooks.map(b => b.book);
+    let borrowed_book_ids = this.currentUser.currentUser.borrowedBooks_id;
+    this.borrowedBookHistory = this.borrowedBooks.getBorrowedBooksByIds(borrowed_book_ids, "Not Returned");
+    let book_ids = this.borrowedBookHistory.map(b => b.book_id);
+    this.filteredBooks = this.books.filter(b => book_ids.includes(b.id));
+  }
+
+  getBorrowedBookHistory(book_id){
+    return this.borrowedBookHistory.find(b => b.book_id === book_id);
+  }
+
+  getBookNameById(id){
+    let book = this.books.find(b => b.id === id);
+    return book.title;
   }
 
   saveSBooks() {
@@ -199,7 +235,7 @@ export default class BooksService extends Service {
   searchBooks(searchText, books) {
     searchText = (searchText ?? "").toLowerCase();
     this.filteredBooks = books.filter(book => {
-      return book.title.toLowerCase().includes(searchText)
+      return book.title.toLowerCase().includes(searchText) && book.isDeleted !== true
     });
   }
 
@@ -218,7 +254,6 @@ export default class BooksService extends Service {
 
 
   addBook(values) {
-    console.log(this.bookId);
     let newBook = {
       id: this.bookId,
       title: values[0],
@@ -231,14 +266,15 @@ export default class BooksService extends Service {
       pages: Number(values[7]),
       stock: Number(values[8]),
       description: values[9],
-      image: "/images/empty_image.png"
+      image: "/images/empty_image.png",
+      isDeleted : false,
+      borrowedBooks_id : []
     }
 
     this.books.push(new TrackedObject(newBook));
     this.bookId += 1;
-    console.log(this.bookId);
+    this.getAllBooks();
     this.saveSBooks();
-    console.log(newBook)
   }
 
   editBook(values) {
@@ -259,11 +295,10 @@ export default class BooksService extends Service {
   }
 
   deleteBook(id) {
-    let index = this.books.findIndex(book => book.id == id);
-
-    if (index !== -1) {
-      this.books.splice(index, 1);
-      this.books = [...this.books]
+    let book = this.books.find(book => book.id == id);
+    if (book) {
+      book.isDeleted = true;
+      this.getAllBooks()
       alert("Book Deleted")
       this.saveSBooks();
     }
@@ -272,10 +307,18 @@ export default class BooksService extends Service {
     }
   }
 
-  changeBookStock(num, book) {
-    let changeBook = this.books.find(b => b.title === book.title);
+  changeBookStock(num, book_id) {
+    let changeBook = this.books.find(b => b.id === book_id);
     if (changeBook) {
       changeBook.stock += num;
+    }
+    this.saveSBooks();
+  }
+
+  updateBorrowedBooksId(book_id, id){
+    let updateBook = this.books.find(b => b.id === book_id);
+    if(updateBook){
+      updateBook.borrowedBooks_id.push(id);
     }
     this.saveSBooks();
   }

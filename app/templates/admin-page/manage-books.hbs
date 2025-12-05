@@ -1,7 +1,7 @@
 <LinkTo type="button" id="add-btn" @route="admin-page.add-book">Add Book</LinkTo>
 
 <div id="books">
-  {{#each @model.books as |book|}}
+  {{#each @model.filteredBooks as |book|}}
     <Book @book={{book}} @isAdmin="true" as |_ _ _ id deleteBook _ stopPropagation|>
       <div id="btns">
         <LinkTo type="button" id="edit-btn" @route="admin-page.edit-book" @model={{id}} {{on 'click' stopPropagation}}>

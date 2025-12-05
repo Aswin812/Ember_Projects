@@ -1,6 +1,6 @@
 <Header />
 <div class="options">
-  <Options @value={{this.sortBy}}/>
-  <Search @onSearch={{this.onSearch}} />
+  <Options @sort={{@model}} />
+  <Search/>
 </div>
 {{outlet}}

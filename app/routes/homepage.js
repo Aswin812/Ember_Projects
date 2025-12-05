@@ -1,6 +1,5 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
 
 // function wait() {
 //   return new Promise(resolve => {
@@ -12,28 +11,27 @@ export default class HomepageRoute extends Route {
   @service books;
   @service router;
   @service currentUser;
-  @tracked sortBy = 'None';
 
-  beforeModel(){
+  beforeModel(transition){
     if (this.currentUser.isEmpty()) {
+      this.currentUser.previousRoute = transition;
       this.router.transitionTo('login');
       return;
     }
 
     if(this.currentUser.currentUser.email === 'admin@gmail.com'){
-      this.router.transitionTo('admin-page')
+      this.router.transitionTo('admin-page.manage-books')
     }
 
   }
 
-  async model() {
+  async model(params) {
     // await wait();
     if (this.books.books.length === 0) {
       this.books.getBooks();
     }
-  }
-
-  afterModel(){
-    this.router.transitionTo('homepage.books')
+    if(params.sort){
+      return params.sort;
+    }
   }
 }

@@ -3,6 +3,7 @@ import { TrackedObject } from 'tracked-built-ins';
 
 export default class CurrentUserService extends Service {
     currentUser = new TrackedObject();
+    previousRoute = null;
 
     constructor(){
       super(...arguments);
@@ -32,6 +33,7 @@ export default class CurrentUserService extends Service {
 
     logout() {
         this.currentUser = null;
+        this.previousRoute = null;
         localStorage.removeItem('currentUser');
     }
 }

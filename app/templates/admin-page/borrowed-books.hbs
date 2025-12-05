@@ -1,1 +1,3 @@
-<BorrowedBooks />
+<AdminTable @headings={{array "Student Name" "Book Title" "Borrowed Date" "Return Date" "IsReturned" }}
+    @fields={{array "student_id" "book_id" "borrowDate" "returnDate" "isReturned" }}
+    @data={{@model}} />

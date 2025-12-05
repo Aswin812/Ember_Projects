@@ -15,7 +15,7 @@ export default class HomepageBorrowedBooksRoute extends Route {
     if (params.search) {
       this.books.searchBooks(params.search, this.books.filteredBooks);
     }
-    console.log(this.books.filteredBooks)
+    // console.log(this.books.filteredBooks)
 
     if(params.sort){
       this.sortBy = params.sort;

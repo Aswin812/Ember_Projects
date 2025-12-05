@@ -11,7 +11,15 @@
             {{#each @data as |item|}}
             <tr>
                 {{#each @fields as |field|}}
-                <td>{{get item field}}</td>
+                <td>
+                  {{#if (eq field "book_id")}}
+                    {{this.getBookNameById (get item field)}}
+                  {{else if (eq field "student_id")}}
+                    {{this.getStudentNameById (get item field)}}
+                  {{else}}
+                  {{get item field}}
+                  {{/if}}
+                </td>
 
                 {{/each}}
 

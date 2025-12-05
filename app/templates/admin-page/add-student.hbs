@@ -1,3 +1,5 @@
-<AddForm @heading="Add Student" @btn-value="Add Student">
+<AddForm @heading="Add Student" as |handleSubmit|>
+  <FormComponent @btn-value="Add Student" @id="add-form" @handleSubmit={{handleSubmit}}>
     <CreateAccount />
+  </FormComponent>
 </AddForm>

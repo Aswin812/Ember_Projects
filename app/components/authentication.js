@@ -5,6 +5,7 @@ import { tracked } from '@glimmer/tracking';
 
 export default class Authentication extends Component {
   @service students;
+  @service currentUser;
   @service router;
   @tracked errorMsg;
 
@@ -21,10 +22,21 @@ export default class Authentication extends Component {
     let temp = values.pop();
     if (temp === "Login") {
       if (this.students.login(values)) {
-        this.router.transitionTo('homepage');
+        if(this.currentUser.previousRoute){
+          this.currentUser.previousRoute.retry();
+        }
+        else{
+          this.router.transitionTo('homepage.books');
+        }
       }
       else if (this.students.isAdmin(values)) {
-        this.router.transitionTo('admin-page');
+        if(this.currentUser.previousRoute){
+          console.log(this.currentUser.previousRoute)
+          this.currentUser.previousRoute.retry();
+        }
+        else{
+          this.router.transitionTo('admin-page.manage-books');
+        }
       }
       else{
         this.errorMsg = "UserName or Password are Incorrect !";

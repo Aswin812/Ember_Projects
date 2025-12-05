@@ -11,12 +11,18 @@ export default class BorrowedBooksService extends Service {
     }
 
     getBorrowedBooks() {
+      // localStorage.removeItem('borrowed-books');
+      // localStorage.removeItem('borrowed-book-id');
+      // return
         let getborrowedbooks = localStorage.getItem('borrowed-books');
         if (getborrowedbooks) {
             let parse = JSON.parse(getborrowedbooks);
             this.borrowedBooks.push(...parse.map(borrowedBook => new TrackedObject(borrowedBook)));
         }
-        this.borrowedBookId = JSON.parse(localStorage.getItem('borrowed-book-id'));
+        let id = JSON.parse(localStorage.getItem('borrowed-book-id'));
+        if(id){
+          this.borrowedBookId = id;
+        }
     }
 
     saveBorrowedBooks() {
@@ -24,11 +30,24 @@ export default class BorrowedBooksService extends Service {
         localStorage.setItem('borrowed-book-id', JSON.stringify(this.borrowedBookId));
     }
 
-    addBorrowBook(name, title, borrowdate, returndate, isReturn) {
+    getBorrowedBooksByIds(ids, value){
+      return this.borrowedBooks.filter(b => ids.includes(b.id) && b.isReturned === value);
+    }
+
+    checkAlreadyBorrowedBook(borrowedBooksId, book_id){
+      for(let b of this.borrowedBooks){
+        if(borrowedBooksId.includes(b.id) && b.book_id === book_id && b.isReturned === "Not Returned"){
+          return true;
+        }
+      }
+      return false;
+    }
+
+    addBorrowBook(s_id, b_id, borrowdate, returndate, isReturn) {
         let borrowBook = {
             id: this.borrowedBookId,
-            studentName: name,
-            bookTitle: title,
+            student_id: s_id,
+            book_id: b_id,
             borrowDate: borrowdate,
             returnDate: returndate,
             isReturned: isReturn
@@ -37,11 +56,12 @@ export default class BorrowedBooksService extends Service {
         this.borrowedBooks.push(new TrackedObject(borrowBook));
         this.borrowedBookId += 1;
         this.saveBorrowedBooks();
+        return this.borrowedBookId-1;
     }
 
-    markAsReturned(name, title) {
-        for (let b of this.borrowedBooks) {
-            if (b.studentName === name && b.bookTitle === title) {
+    markAsReturned(id) {
+      for (let b of this.borrowedBooks) {
+        if (b.id === id && b.isReturned === 'Not Returned') {
                 let today = new Date();
                 today = today.toLocaleDateString("en-GB");
                 b.returnDate = today;
@@ -52,7 +72,7 @@ export default class BorrowedBooksService extends Service {
         }
     }
 
-    getStudentsByBorrowedBooks(title){
-      return this.borrowedBooks.filter(b => b.bookTitle === title && b.isReturned === 'Not Returned').map(b => b.studentName);
+    getBookHistory(book_id){
+      return this.borrowedBooks.filter(b => b.book_id === book_id);
     }
 }

@@ -5,13 +5,13 @@ import { tracked } from 'tracked-built-ins';
 
 export default class OptionsComponent extends Component {
   @service books;
-  @service router
-  @tracked sort = 'Name';
+  @service router;
+  @tracked sort = '';
 
   @action
   sortBooks(event) {
     let sortBy = event.target.value;
-    // this.books.sortBooks(sortBy);
+    this.sort = sortBy;
     let currentRoute = this.router.currentRouteName;
     if(currentRoute !== null){
       currentRoute = currentRoute.split('.').splice(1);
