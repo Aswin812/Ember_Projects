@@ -6,12 +6,17 @@ import { tracked } from 'tracked-built-ins';
 export default class OptionsComponent extends Component {
   @service books;
   @service router;
-  @tracked sort = '';
+  @tracked sort = 'None';
+
+  get sortValue(){
+    return this.router.currentRoute.queryParams.sort;
+  }
 
   @action
   sortBooks(event) {
     let sortBy = event.target.value;
     this.sort = sortBy;
+    sortBy = sortBy === "None" ? null : sortBy;
     let currentRoute = this.router.currentRouteName;
     if(currentRoute !== null){
       currentRoute = currentRoute.split('.').splice(1);
@@ -24,10 +29,10 @@ export default class OptionsComponent extends Component {
   @action
   borrowedBooks(event) {
     if(event.target.value==='All'){
-      this.router.transitionTo('homepage.books');
+      this.router.transitionTo('homepage.books', {queryParams : {book : null, search : null, sort:null}});
     }
     else if(event.target.value === 'Borrowed'){
-      this.router.transitionTo('homepage.borrowed-books')
+      this.router.transitionTo('homepage.books', {queryParams : {book : "borrowed-books" ,search : null, sort:null}})
     }
   }
 }

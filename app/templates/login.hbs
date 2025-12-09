@@ -1,16 +1,16 @@
-<Authentication @heading="Library Login" as |handleSubmit errorMsg|>
-  <FormComponent @btn-value="Login" @id="auth-form" @handleSubmit={{handleSubmit}}>
+<Authentication @heading="Library Login">
+  <FormComponent @btn-value="Login" @id="auth-form" as |errorMsg f|>
     <div>
       Email :
-      <input type="email" id="email" required>
+      <input type="email" id="email" {{on 'input' (fn f.validateEmail "")}}>
+      <img src="/images/error.png" alt="" class="error-img hidden" />
     </div>
     <div>
       Password :
       <input type="password" id="password" required>
+      <img src="/images/hide.png" alt="" class="view-img" {{on 'click' f.changePasswordType}}>
     </div>
-    {{#if errorMsg}}
     <p id="error">{{errorMsg}}</p>
-    {{/if}}
   </FormComponent>
   <p>Don't have an account?
     <LinkTo @route="create-account">Create Account</LinkTo>

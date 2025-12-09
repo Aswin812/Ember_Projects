@@ -1,6 +1,9 @@
-<Authentication @heading="Create Account" as |handleSubmit|>
-  <FormComponent @btn-value="Create Account" @id="auth-form" @handleSubmit={{handleSubmit}}>
-    <CreateAccount />
+<Authentication @heading="Create Account">
+  <FormComponent @btn-value="Create Account" @id="auth-form" as |errorMsg f|>
+    <CreateAccount
+      @errorMsg={{errorMsg}}
+      @f={{f}}
+    />
   </FormComponent>
   <p>Already have an account?
     <LinkTo @route="login">Sign In</LinkTo>

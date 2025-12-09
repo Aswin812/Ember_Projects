@@ -16,8 +16,10 @@
                     {{this.getBookNameById (get item field)}}
                   {{else if (eq field "student_id")}}
                     {{this.getStudentNameById (get item field)}}
+                  {{else if (eq field "isAdmin")}}
+                    {{if (get item field) "Admin" "Student"}}
                   {{else}}
-                  {{get item field}}
+                    {{get item field}}
                   {{/if}}
                 </td>
 

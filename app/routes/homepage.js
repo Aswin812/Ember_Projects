@@ -14,12 +14,12 @@ export default class HomepageRoute extends Route {
 
   beforeModel(transition){
     if (this.currentUser.isEmpty()) {
-      this.currentUser.previousRoute = transition;
+      this.currentUser.previousRoute.push(transition);
       this.router.transitionTo('login');
       return;
     }
 
-    if(this.currentUser.currentUser.email === 'admin@gmail.com'){
+    if(this.currentUser.currentUser.isAdmin){
       this.router.transitionTo('admin-page.manage-books')
     }
 

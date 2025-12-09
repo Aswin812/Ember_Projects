@@ -52,7 +52,7 @@
           {{else}}
             <span
           id="borrowed-by"
-          {{on "click" (fn this.getBookHistory @book.id)}}
+          {{on "click" (fn this.getBookHistory @book.borrowedBooks_id)}}
         >Brrowed By...</span>
         {{/if}}
       {{/if}}

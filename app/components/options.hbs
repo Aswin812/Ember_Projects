@@ -1,13 +1,12 @@
 <div>
-    <select id="" {{on "change" this.borrowedBooks}} value={{this.getBookOption}}>
-        <option value="All">All</option>
-        <option value="Borrowed">Borrowed</option>
+    <select id="" {{on "change" this.borrowedBooks}}>
+        <option value="All" selected={{@currentBooks}}>All</option>
+        <option value="Borrowed" selected={{@currentBooks}}>Borrowed</option>
     </select>
 
     Sort By :
-    {{@sort}}
-    <select id="sort" value={{or @sort this.sort}} {{on "change" this.sortBooks}}>
-  <option value="None">None</option>
-  <option value="Name">Name</option>
-</select>
+    <select id="sort" {{on "change" this.sortBooks}}>
+      <option value="None" selected={{@sort}}>None</option>
+      <option value="Name" selected={{@sort}}>Name</option>
+    </select>
 </div>

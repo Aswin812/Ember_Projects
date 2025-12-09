@@ -189,9 +189,6 @@ export default class BooksService extends Service {
   }
 
   getBooks() {
-    // localStorage.removeItem('books');
-    // localStorage.removeItem('book-id')
-    // return;
     let getbooks = localStorage.getItem('books');
     if (getbooks) {
       let parse = JSON.parse(getbooks);
@@ -204,7 +201,6 @@ export default class BooksService extends Service {
       this.bookId = id;
     }
     this.saveSBooks();
-    // console.log(this.books)
   }
 
   getAllBooks() {

@@ -1,16 +1,47 @@
 <div>
-    UserName :
-    <input type="text" id="username" required>
+  UserName :
+  <input type="text" id="username" {{on "input" @f.validateUserName}} />
+  <img src="/images/error.png" alt="" class="error-img hidden" />
 </div>
+
 <div>
-    Email :
-    <input type="email" id="email" required>
+  Email :
+  <input type="email" id="email" {{on "input" (fn @f.validateEmail "create")}} />
+  <img src="/images/error.png" alt="" class="error-img hidden" />
 </div>
+
+<div class="password-row">
+  Password :
+  <input type="password" id="password" {{on "input" @f.validatePassword}} {{validate-popup}} />
+  {{!-- template-lint-disable no-invalid-interactive --}}
+  <img src="/images/hide.png" alt="" class="view-img" {{on 'click' @f.changePasswordType}}>
+  <img src="/images/error.png" alt="" class="error-img hidden" />
+  <div id="validate-popup" class="hidden">
+    <span>• Minimum 8 characters</span>
+    <span>• At least 1 lowercase letter</span>
+    <span>• At least 1 uppercase letter</span>
+    <span>• At least 1 number</span>
+    <span>• At least 1 special character</span>
+  </div>
+</div>
+
 <div>
-    Password :
-    <input type="password" id="password" required>
+  Confirm Password :
+  <input
+    type="password"
+    id="confirmpassword"
+    {{on "input" @f.validateConfirmPassword}}
+  />
+  {{!-- template-lint-disable no-invalid-interactive --}}
+  <img src="/images/hide.png" alt="" class="view-img" {{on 'click' @f.changePasswordType}}>
+  <img src="/images/error.png" alt="" class="error-img hidden" />
 </div>
+
 <div>
-    Mobile Number :
-    <input type="number" id="mobile" required>
+  Mobile Number :
+  <input type="number" id="mobile" {{on "input" @f.validateMobileNumber}} />
+  <img src="/images/error.png" alt="" class="error-img hidden" />
 </div>
+
+{{yield}}
+<p id="error"> {{@errorMsg}}</p>

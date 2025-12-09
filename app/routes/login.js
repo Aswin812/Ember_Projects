@@ -6,6 +6,7 @@ export default class LoginRoute extends Route {
   @service currentUser;
   @service router;
   beforeModel(){
+    // localStorage.clear()
     if(!this.currentUser.isEmpty()){
       this.router.transitionTo('homepage.books');
     }

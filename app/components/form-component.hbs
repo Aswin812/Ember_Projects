@@ -1,4 +1,17 @@
-<form id={{@id}} {{on "submit" @handleSubmit}}>
-  {{yield}}
-  <input type="submit" id="btn" value={{@btn-value}}>
+<form id={{@id}} {{on "submit" this.handleSubmit}}>
+  {{yield
+    this.errorMsg
+    (hash
+      validateUserName=this.validateUserName
+      validatePassword=this.validatePassword
+      validateConfirmPassword=this.validateConfirmPassword
+      validateEmail=this.validateEmail
+      validateMobileNumber=this.validateMobileNumber
+      validateIsEmpty=this.validateIsEmpty
+      validateBookTitle=this.validateBookTitle
+      closePopup = this.closePopup
+      changePasswordType = this.changePasswordType
+    )
+  }}
+  <input type="submit" id="btn" value={{@btn-value}} />
 </form>

@@ -9,11 +9,11 @@ export default class AdminPageRoute extends Route {
   beforeModel(transition) {
 
     if (this.currentUser.isEmpty()) {
-      this.currentUser.previousRoute = transition;
+      this.currentUser.previousRoute.push(transition);
       this.router.transitionTo('login');
       return;
     }
-    if (this.currentUser.currentUser.email !== 'admin@gmail.com') {
+    if (!this.currentUser.currentUser.isAdmin) {
       this.router.transitionTo('homepage.books')
     }
   }
@@ -22,6 +22,6 @@ export default class AdminPageRoute extends Route {
     this.books.getAllBooks();
     // if (this.books.books.length === 0) {
     // }
-    return { options: ["Manage Students", "Manage Books", "Borrowed Books", "Returned Books", "Due Date"] };
+    return { options: ["Manage Users", "Manage Books", "Borrowed Books", "Returned Books", "Due Date"] };
   }
 }

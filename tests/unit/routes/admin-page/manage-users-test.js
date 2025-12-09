@@ -1,11 +1,11 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'library-management/tests/helpers';
 
-module('Unit | Route | homepage/borrowed-books', function (hooks) {
+module('Unit | Route | admin-page/manage-users', function (hooks) {
   setupTest(hooks);
 
   test('it exists', function (assert) {
-    let route = this.owner.lookup('route:homepage/borrowed-books');
+    let route = this.owner.lookup('route:admin-page/manage-users');
     assert.ok(route);
   });
 });

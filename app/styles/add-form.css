@@ -1,0 +1,58 @@
+#add-container {
+    margin-top: 3%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+#add-container h1 {
+    color: rgb(49 49 49);
+}
+
+#add-container #add-form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+}
+
+#add-container #add-form div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 140px 1fr 30px 30px;
+    align-items: center;
+    gap: 10px;
+}
+
+#add-container #add-form div input {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(54 54 54);
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+}
+
+#add-container #add-form div textarea {
+    width: 100%;
+    height: 60px;
+    outline: none;
+    font-size: 16px;
+    padding: 5px;
+}
+
+#add-container #add-form #add-btn {
+    margin: 0;
+    margin-top: 30px;
+    padding-top: 0;
+}
+
+#add-form #checklable{
+  cursor: pointer;
+  margin-right: 82%;
+}

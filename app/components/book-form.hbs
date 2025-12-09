@@ -1,41 +1,53 @@
 {{yield}}
 <div>
   Title :
-  <input type="text" id="title" value={{@book.title}} />
+  <input type="text" id="title" value={{@book.title}} {{auto-focus}} {{on 'input' @validateBookTitle}} >
+  <img src="/images/error.png" alt="" class="error-img hidden">
 </div>
 <div>
   Sub-Title :
-  <input type="text" id="sub-title" value={{@book.subtitle}} />
+  <input type="text" id="sub-title" value={{@book.subtitle}} {{on 'input' @validateIsEmpty}}>
+  <img src="/images/error.png" alt="" class="error-img hidden">
 </div>
 <div>
   Author :
-  <input type="text" id="author" value={{@book.author}} />
+  <input type="text" id="author" value={{@book.author}} {{on 'input' @validateUserName}}>
+  <img src="/images/error.png" alt="" class="error-img hidden">
 </div>
 <div>
   Publisher :
-  <input type="text" id="publisher" value={{@book.publisher}} />
+  <input type="text" id="publisher" value={{@book.publisher}} {{on 'input' @validateUserName}}>
+  <img src="/images/error.png" alt="" class="error-img hidden">
 </div>
 <div>
   Published Year :
-  <input type="number" id="year" value={{@book.publishedYear}} />
+  <input type="number" id="year" value={{@book.publishedYear}} required>
+  <img src="/images/error.png" alt="" class="error-img hidden">
 </div>
 <div>
   Genre :
-  <input type="text" id="genre" value={{@book.genre}} />
+  <input type="text" id="genre" value={{@book.genre}} {{on 'input' @validateIsEmpty}}>
+  <img src="/images/error.png" alt="" class="error-img hidden">
 </div>
 <div>
   Language :
-  <input type="text" id="language" value={{@book.language}} />
+  <input type="text" id="language" value={{@book.language}} {{on 'input' @validateIsEmpty}}>
+  <img src="/images/error.png" alt="" class="error-img hidden">
 </div>
 <div>
   Pages :
-  <input type="number" id="pages" value={{@book.pages}} />
+  <input type="number" id="pages" value={{@book.pages}} required>
+  <img src="/images/error.png" alt="" class="error-img hidden">
 </div>
 <div>
   Stock :
-  <input type="number" id="stock" value={{@book.stock}} />
+  <input type="number" id="stock" value={{@book.stock}} required>
+  <img src="/images/error.png" alt="" class="error-img hidden">
 </div>
 <div>
   Description :
-  <textarea type="text" id="description">{{@book.description}}</textarea>
+  <textarea type="text" id="description" {{on 'input' @validateIsEmpty}}>{{@book.description}}</textarea>
+  <img src="/images/error.png" alt="" class="error-img hidden">
 </div>
+
+<p id="error"> {{@errorMsg}}</p>

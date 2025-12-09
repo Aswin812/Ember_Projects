@@ -1,3 +1,5 @@
-<AdminTable @headings={{array "Student Name" "Book Title" "Borrowed Date" "Return Date" "IsReturned" }}
+<BackButton />
+
+<AdminTable @headings={{array "Student Name" "Book Title" "Borrowed Date" "Returned Date" "IsReturned" }}
     @fields={{array "student_id" "book_id" "borrowDate" "returnDate" "isReturned" }}
     @data={{@model}} />

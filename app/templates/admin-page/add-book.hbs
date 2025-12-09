@@ -1,5 +1,12 @@
-<AddForm @heading="Add Book" as |handleSubmit|>
-    <FormComponent @btn-value="Add Book" @id="add-form" @handleSubmit={{handleSubmit}}>
-      <BookForm/>
-    </FormComponent>
+<BackButton />
+
+<AddForm @heading="Add Book">
+  <FormComponent @btn-value="Add Book" @id="add-form" as |errorMsg f|>
+    <BookForm
+      @errorMsg={{errorMsg}}
+      @validateIsEmpty={{f.validateIsEmpty}}
+      @validateUserName={{f.validateUserName}}
+      @validateBookTitle={{f.validateBookTitle}}
+    />
+  </FormComponent>
 </AddForm>

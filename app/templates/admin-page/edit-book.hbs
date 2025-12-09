@@ -1,5 +1,7 @@
+<BackButton />
+
 <AddForm @heading="Edit Book" as |handleSubmit|>
-    <FormComponent @btn-value="Edit Book" @id="add-form" @handleSubmit={{handleSubmit}}>
+    <FormComponent @btn-value="Save Changes" @id="add-form" @handleSubmit={{handleSubmit}}>
       <BookForm @book={{@model}}>
         <input type="hidden" value="{{@model.id}}">
       </BookForm>

@@ -1,0 +1,6 @@
+<BackButton />
+
+<LinkTo type="button" id="add-btn"  @route="admin-page.add-student">Add User</LinkTo>
+
+<AdminTable @headings={{array "NAME" "EMAIL" "MOBILE NUMBER" "ROLE" "ACTION" }} @fields={{array "name" "email" "mobileNumber" "isAdmin"
+    }} @data={{@model}} @onDelete="true" />

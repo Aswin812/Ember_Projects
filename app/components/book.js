@@ -23,8 +23,8 @@ export default class Book extends Component {
   }
 
   @action
-  getBookHistory(book_id){
-    this.bookHistory = this.borrowedBooks.getBookHistory(book_id);
+  getBookHistory(ids){
+    this.bookHistory = this.borrowedBooks.getBookHistory(ids);
   }
 
   @action

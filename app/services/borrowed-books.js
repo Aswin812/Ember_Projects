@@ -72,7 +72,7 @@ export default class BorrowedBooksService extends Service {
         }
     }
 
-    getBookHistory(book_id){
-      return this.borrowedBooks.filter(b => b.book_id === book_id);
+    getBookHistory(ids){
+      return this.borrowedBooks.filter(b => ids.includes(b.id));
     }
 }

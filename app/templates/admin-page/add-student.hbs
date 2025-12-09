@@ -1,5 +1,12 @@
-<AddForm @heading="Add Student" as |handleSubmit|>
-  <FormComponent @btn-value="Add Student" @id="add-form" @handleSubmit={{handleSubmit}}>
-    <CreateAccount />
+<BackButton />
+
+<AddForm @heading="Add User">
+  <FormComponent @btn-value="Add User" @id="add-form" as |errorMsg f|>
+    <CreateAccount @errorMsg={{errorMsg}} @f={{f}}>
+        <label id="checklable">
+        <input type="checkbox" id="check" value="true">
+        isAdmin
+        </label>
+    </CreateAccount>
   </FormComponent>
 </AddForm>

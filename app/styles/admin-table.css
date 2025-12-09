@@ -1,0 +1,58 @@
+#admin-table {
+    width: 70%;
+    padding: 20px;
+    margin-bottom: 30px
+}
+
+#admin-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: rgb(0 0 0 / 16%) 0 1px 4px;
+}
+
+#admin-table th,
+#admin-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+#admin-table th {
+    background-color: #16a085;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#admin-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+#admin-table td {
+    color: #2c3e50;
+    font-size: 15px;
+}
+
+#admin-table button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    outline: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+#admin-table button:hover {
+    background-color: #c0392b;
+}
+
+#admin-table p {
+    text-align: center;
+    margin-top: 5%;
+    font-size: 20px;
+}
